@@ -408,7 +408,7 @@ allExamples = concat
              , "over 1/4 u"
              , "over 1/4 uur"
              , "over 15 min"
-             , "over 15 min.
+             , "over 15 min."
              , "over 15 minuten"
              ]
   , examples (datetime (2013, 2, 12, 5, 0, 0) Second)

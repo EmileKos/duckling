@@ -64,7 +64,7 @@ ruleOrdinalDigits :: Rule
 ruleOrdinalDigits = Rule
   { name = "ordinal (digits)"
   , pattern =
-    [ regex "0*(\\d+)(\\.| ?(ste|de))"
+    [ regex "0*(\\d+)(\\.| ?(e|ste|de))"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) ->

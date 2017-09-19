@@ -85,6 +85,7 @@ allExamples = concat
              [ "24"
              , "vierentwintig"
              , "twee dozijn"
+             , "twee dozijnen"
              ]             
   , examples (NumeralValue 1.1)
              [ "1,1"

@@ -397,7 +397,7 @@ allExamples = concat
              , "over een paar minuten"
              ]
   , examples (datetime (2013, 2, 12, 4, 33, 0) Second)
-             , "over enkele minuten"
+             [ "over enkele minuten"
              ]
   , examples (datetime (2013, 2, 12, 5, 30, 0) Second)
              [ "over 60 minuten"

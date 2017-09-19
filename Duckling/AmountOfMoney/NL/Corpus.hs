@@ -8,7 +8,7 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
-module Duckling.AmountOfMoney.EN.Corpus
+module Duckling.AmountOfMoney.NL.Corpus
   ( corpus ) where
 
 import Prelude

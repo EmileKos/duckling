@@ -10,7 +10,7 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
-module Duckling.Time.EN.Corpus
+module Duckling.Time.NL.Corpus
   ( corpus
   , negativeCorpus
   ) where

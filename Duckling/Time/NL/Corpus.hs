@@ -129,7 +129,6 @@ allExamples = concat
              , "2015-3-3"
              , "2015-03-03"
              , "2015-03-03"
-
              ]
   , examples (datetime (2013, 2, 15, 0, 0, 0) Day)
              [ "op de 15de"
@@ -148,7 +147,7 @@ allExamples = concat
              , "15.02"
              , "2-15"
              , "02-15"
-             , "2 - 15"s
+             , "2 - 15"
              , "02 - 15"
              ]
   , examples (datetime (2013, 8, 8, 0, 0, 0) Day)
@@ -243,6 +242,7 @@ allExamples = concat
   , examples (datetime (2014, 1, 1, 0, 0, 0) Year)
              [ "volgend jaar"
              , "komend jaar"
+             ]
   , examples (datetime (2013, 2, 10, 0, 0, 0) Day)
              [ "vorige zondag"
              , "zondag van vorige week"

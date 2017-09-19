@@ -859,7 +859,7 @@ allExamples = concat
   , examples (datetimeInterval ((2013, 7, 26, 18, 0, 0), (2013, 7, 29, 0, 0, 0)) Hour)
              [ "laatste weekend van juli"
              , "laatste weekeinde van juli"
-              "laatste weekeind van juli"
+             , "laatste weekeind van juli"
              ]
   , examples (datetimeInterval ((2017, 10, 27, 18, 0, 0), (2017, 10, 30, 0, 0, 0)) Hour)
              [ "laatste weekend van oktober 2017"

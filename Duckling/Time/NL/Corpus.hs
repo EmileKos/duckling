@@ -290,11 +290,11 @@ allExamples = concat
   , examples (datetime (2013, 10, 7, 0, 0, 0) Week)
              ["de week van 7 oktober"]
   , examples (datetime (2015, 10, 31, 0, 0, 0) Day)
-             ["laatste dag van oktober 2015"]             ]
+             ["laatste dag van oktober 2015"]  
   , examples (datetime (2014, 9, 22, 0, 0, 0) Week)
              ["laatste week van september 2014"]
   , examples (datetime (2013, 10, 1, 0, 0, 0) Day)
-             ["eerste dinsdag van oktober"]             ]
+             ["eerste dinsdag van oktober"]
   , examples (datetime (2014, 9, 16, 0, 0, 0) Day)
              ["derde dinsdag van september 2014"]
   , examples (datetime (2014, 10, 1, 0, 0, 0) Day)

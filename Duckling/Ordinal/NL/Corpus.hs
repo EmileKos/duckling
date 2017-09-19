@@ -27,13 +27,41 @@ allExamples = concat
   [ examples (OrdinalData 1)
              [ "1ste"
              , "eerste"
+             , "1e"
+             ]
+  , examples (OrdinalData 3)
+             [ "3de"
+             , "derde"
+             , "3e"
              ]
   , examples (OrdinalData 4)
              [ "4de"
              , "vierde"
+             , "4e"
              ]
+  , examples (OrdinalData 8)
+             [ "8ste"
+             , "achtste"
+             , "8e"
+             ]
+  , examples (OrdinalData 14)
+             [ "14de"
+             , "veertiende"
+             , "14e"
+             ]
+  , examples (OrdinalData 18)
+             [ "18de"
+             , "achttiende"
+             , "18e"
+             ]     
   , examples (OrdinalData 17)
-             [ "Zeventiende"
+             [ "zeventiende"
              , "17de"
+             , "17e"
              ]
+  , examples (OrdinalData 100)
+             [ "100ste"
+             , "honderdste"
+             , "100e"
+             ]  
   ]

@@ -164,7 +164,9 @@ allExamples = concat
              ]
   , examples (NumeralValue 2400)
              [ "tweehonderd dozijn"
+             [ "tweehonderd dozijnen"
              , "200 dozijn"
+             , "200 dozijnen"
              ]
   , examples (NumeralValue 2200000)
              [ "twee miljoen tweehonderdduizend"

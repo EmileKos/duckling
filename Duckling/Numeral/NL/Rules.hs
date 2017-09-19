@@ -198,9 +198,9 @@ ruleCouple = Rule
 
 ruleDozen :: Rule
 ruleDozen = Rule
-  { name = "dozen"
+  { name = "a dozen of"
   , pattern =
-    [ regex "dozijn"
+    [ regex "(een )?dozijn(en)?( van)?"
     ]
   , prod = \_ -> integer 12 >>= withGrain 1
   }

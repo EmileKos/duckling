@@ -65,7 +65,7 @@ allExamples = concat
              ]
   , examples (simple Pound 10)
              [ "\x00a3\&10"
-             , "ten pounds"
+             , "tien pounds"
              ]
   , examples (simple INR 20)
              [ "Rs. 20"
@@ -83,7 +83,7 @@ allExamples = concat
              , "$20 43"
              , "20 dollar 43c"
              , "20 dollar 43 cent"
-             , "twenty dollar 43 cent"
+             , "twintig dollar 43 cent"
              , "20 dollar 43"
              , "twintig dollar en 43"
              ]
@@ -137,7 +137,7 @@ allExamples = concat
   , examples (under EUR 7)
              [ "onder zeven euro"
              , "minder dan 7 EUR"
-             , "lager dan 7€"
+             , "lager dan €7"
              ]
   , examples (above Dollar 1.42)
              [ "meer dan 1 dollar en vierenveertig cent"

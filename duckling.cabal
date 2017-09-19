@@ -163,6 +163,8 @@ library
                      , Duckling.AmountOfMoney.KO.Rules
                      , Duckling.AmountOfMoney.NB.Corpus
                      , Duckling.AmountOfMoney.NB.Rules
+                     , Duckling.AmountOfMoney.NL.Corpus
+                     , Duckling.AmountOfMoney.NL.Rules
                      , Duckling.AmountOfMoney.PT.Corpus
                      , Duckling.AmountOfMoney.PT.Rules
                      , Duckling.AmountOfMoney.RO.Corpus
@@ -221,6 +223,8 @@ library
                      , Duckling.Duration.KO.Rules
                      , Duckling.Duration.NB.Corpus
                      , Duckling.Duration.NB.Rules
+                     , Duckling.Duration.NL.Corpus
+                     , Duckling.Duration.NL.Rules
                      , Duckling.Duration.PL.Corpus
                      , Duckling.Duration.PL.Rules
                      , Duckling.Duration.PT.Corpus
@@ -287,6 +291,8 @@ library
                      , Duckling.Numeral.MY.Rules
                      , Duckling.Numeral.NB.Corpus
                      , Duckling.Numeral.NB.Rules
+                     , Duckling.Numeral.NL.Corpus
+                     , Duckling.Numeral.NL.Rules
                      , Duckling.Numeral.PL.Corpus
                      , Duckling.Numeral.PL.Rules
                      , Duckling.Numeral.PT.Corpus
@@ -303,8 +309,6 @@ library
                      , Duckling.Numeral.VI.Rules
                      , Duckling.Numeral.ZH.Corpus
                      , Duckling.Numeral.ZH.Rules
-                     , Duckling.Numeral.NL.Corpus
-                     , Duckling.Numeral.NL.Rules
                      , Duckling.Numeral.RO.Corpus
                      , Duckling.Numeral.RO.Rules
                      , Duckling.Numeral.Helpers
@@ -446,6 +450,8 @@ library
                      , Duckling.Time.KO.Rules
                      , Duckling.Time.NB.Corpus
                      , Duckling.Time.NB.Rules
+                     , Duckling.Time.NL.Corpus
+                     , Duckling.Time.NL.Rules
                      , Duckling.Time.PL.Corpus
                      , Duckling.Time.PL.Rules
                      , Duckling.Time.PT.Corpus
@@ -478,6 +484,7 @@ library
                      , Duckling.TimeGrain.JA.Rules
                      , Duckling.TimeGrain.KO.Rules
                      , Duckling.TimeGrain.NB.Rules
+                     , Duckling.TimeGrain.NL.Rules
                      , Duckling.TimeGrain.PL.Rules
                      , Duckling.TimeGrain.PT.Rules
                      , Duckling.TimeGrain.RO.Rules
@@ -571,6 +578,7 @@ test-suite duckling-test
                      , Duckling.AmountOfMoney.ID.Tests
                      , Duckling.AmountOfMoney.KO.Tests
                      , Duckling.AmountOfMoney.NB.Tests
+                     , Duckling.AmountOfMoney.NL.Tests
                      , Duckling.AmountOfMoney.PT.Tests
                      , Duckling.AmountOfMoney.RO.Tests
                      , Duckling.AmountOfMoney.SV.Tests
@@ -599,6 +607,7 @@ test-suite duckling-test
                      , Duckling.Duration.JA.Tests
                      , Duckling.Duration.KO.Tests
                      , Duckling.Duration.NB.Tests
+                     , Duckling.Duration.NL.Tests
                      , Duckling.Duration.PL.Tests
                      , Duckling.Duration.PT.Tests
                      , Duckling.Duration.RO.Tests
@@ -715,6 +724,7 @@ test-suite duckling-test
                      , Duckling.Time.IT.Tests
                      , Duckling.Time.KO.Tests
                      , Duckling.Time.NB.Tests
+                     , Duckling.Time.NL.Tests
                      , Duckling.Time.PL.Tests
                      , Duckling.Time.PT.Tests
                      , Duckling.Time.RO.Tests

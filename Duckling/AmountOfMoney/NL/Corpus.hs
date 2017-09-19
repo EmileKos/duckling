@@ -43,21 +43,22 @@ allExamples = concat
              [ "$10K"
              , "10k$"
              , "$10.000"
+             , "$10000"
              , "tienduizend dollar"
              ]
   , examples (simple USD 3.14)
-             [ "USD3.14"
-             , "3.14US$"
-             , "US$ 3.14"
+             [ "USD3,14"
+             , "3,14US$"
+             , "US$ 3,14"
              ]
   , examples (simple EUR 20)
              [ "20\x20ac"
              , "20 euros"
              , "20 eruo"
              , "20 Euro"
-             , "20 Euros"
+             , "20 Euro's"
              , "EUR 20"
-             , "EUR 20.0"
+             , "EUR 20,0"
              , "20€"
              , "20 €ur"
              , "€20"
@@ -65,7 +66,7 @@ allExamples = concat
              ]
   , examples (simple Pound 10)
              [ "\x00a3\&10"
-             , "tien pounds"
+             , "tien pond"
              ]
   , examples (simple INR 20)
              [ "Rs. 20"
@@ -80,7 +81,7 @@ allExamples = concat
              ]
   , examples (simple Dollar 20.43)
              [ "$20 en 43c"
-             , "$20 43"
+             , "$20,43"
              , "20 dollar 43c"
              , "20 dollar 43 cent"
              , "twintig dollar 43 cent"
@@ -88,8 +89,8 @@ allExamples = concat
              , "twintig dollar en 43"
              ]
   , examples (simple GBP 3.01)
-             [ "GBP3.01"
-             , "GBP 3.01"
+             [ "GBP3,01"
+             , "GBP 3,01"
              , "3 pond 1 pence"
              ]
   , examples (simple Unnamed 42)
@@ -141,8 +142,8 @@ allExamples = concat
              ]
   , examples (above Dollar 1.42)
              [ "meer dan 1 dollar en vierenveertig cent"
-             , "minstens $1.42"
-             , "meer dan 1.42 dollar"
+             , "minstens $1,42"
+             , "meer dan 1,42 dollar"
              , "boven een dollar and 42 cent"
              ]
   ]

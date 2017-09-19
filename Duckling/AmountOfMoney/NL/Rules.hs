@@ -30,7 +30,7 @@ rulePounds :: Rule
 rulePounds = Rule
   { name = "£"
   , pattern =
-    [ regex "ponden?"
+    [ regex "pond(en)?"
     ]
   , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly Pound
   }
@@ -39,7 +39,7 @@ ruleOtherPounds :: Rule
 ruleOtherPounds = Rule
   { name = "other pounds"
   , pattern =
-    [ regex "(egyptische|libanese) ?ponden?"
+    [ regex "(egyptische|libanese )?pond(en)?"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
@@ -53,7 +53,7 @@ ruleRiyals :: Rule
 ruleRiyals = Rule
   { name = "riyals"
   , pattern =
-    [ regex "(qatarese|soedische) ?riyals?"
+    [ regex "(qatarese|soedische )?riyals?"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
@@ -67,7 +67,7 @@ ruleDinars :: Rule
 ruleDinars = Rule
   { name = "dinars"
   , pattern =
-    [ regex "(koeweitse) ?dinars?"
+    [ regex "(koeweitse )?dinars?"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
@@ -89,7 +89,7 @@ ruleRinggit :: Rule
 ruleRinggit = Rule
   { name = "ringgit"
   , pattern =
-    [ regex "(maleisische? )?ringgits?"
+    [ regex "(maleisische )?ringgits?"
     ]
   , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly MYR
   }
@@ -98,7 +98,7 @@ ruleCent :: Rule
 ruleCent = Rule
   { name = "cent"
   , pattern =
-    [ regex "cent?|penn(y|ies)|pence|sens?"
+    [ regex "cent(en)?|penn(y|ies)|pence|sens?"
     ]
   , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly Cent
   }
@@ -107,7 +107,7 @@ ruleBucks :: Rule
 ruleBucks = Rule
   { name = "bucks"
   , pattern =
-    [ regex "knots?"
+    [ regex "knots(en)?"
     ]
   , prod = \_ -> Just . Token AmountOfMoney $ currencyOnly Unnamed
   }
@@ -116,7 +116,7 @@ ruleACurrency :: Rule
 ruleACurrency = Rule
   { name = "a <currency>"
   , pattern =
-    [ regex "een?"
+    [ regex "een"
     , financeWith TAmountOfMoney.value isNothing
     ]
   , prod = \tokens -> case tokens of
@@ -204,7 +204,7 @@ ruleIntervalBetweenNumeral = Rule
   , pattern =
     [ regex "tussen|van"
     , dimension Numeral
-    , regex "tot|en"
+    , regex "en|tot"
     , financeWith TAmountOfMoney.value isJust
     ]
   , prod = \tokens -> case tokens of
@@ -223,7 +223,7 @@ ruleIntervalBetween = Rule
   , pattern =
     [ regex "tussen|van"
     , financeWith TAmountOfMoney.value isJust
-    , regex "tot|en"
+    , regex "en|tot"
     , financeWith TAmountOfMoney.value isJust
     ]
   , prod = \tokens -> case tokens of
@@ -274,7 +274,7 @@ ruleIntervalMax :: Rule
 ruleIntervalMax = Rule
   { name = "under/less/lower/no more than <amount-of-money>"
   , pattern =
-    [ regex "onder|(minder|lager|niet? meer) dan"
+    [ regex "onder|(minder|lager|niet meer) dan"
     , financeWith TAmountOfMoney.value isJust
     ]
   , prod = \tokens -> case tokens of

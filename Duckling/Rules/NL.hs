@@ -14,24 +14,28 @@ module Duckling.Rules.NL
   ) where
 
 import Duckling.Dimensions.Types
+import qualified Duckling.AmountOfMoney.NL.Rules as AmountOfMoney
 import qualified Duckling.Distance.NL.Rules as Distance
+import qualified Duckling.Duration.NL.Rules as Duration
 import qualified Duckling.Numeral.NL.Rules as Numeral
 import qualified Duckling.Ordinal.NL.Rules as Ordinal
+import qualified Duckling.Time.NL.Rules as Time
+import qualified Duckling.TimeGrain.NL.Rules as TimeGrain
 import qualified Duckling.Volume.NL.Rules as Volume
 import Duckling.Types
 
 rules :: Some Dimension -> [Rule]
 rules (This Distance) = Distance.rules
-rules (This Duration) = []
+rules (This Duration) = Duration.rules
 rules (This Numeral) = Numeral.rules
 rules (This Email) = []
-rules (This AmountOfMoney) = []
+rules (This AmountOfMoney) = AmountOfMoney.rules
 rules (This Ordinal) = Ordinal.rules
 rules (This PhoneNumber) = []
 rules (This Quantity) = []
 rules (This RegexMatch) = []
 rules (This Temperature) = []
-rules (This Time) = []
-rules (This TimeGrain) = []
+rules (This Time) = Time.rules
+rules (This TimeGrain) = TimeGrain.rules
 rules (This Url) = []
 rules (This Volume) = Volume.rules

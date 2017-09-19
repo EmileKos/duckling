@@ -541,6 +541,9 @@ allExamples = concat
              ]
   , examples (datetimeInterval ((2013, 2, 8, 18, 0, 0), (2013, 2, 11, 0, 0, 0)) Hour)
              [ "vorig weekend"
+             , "vorig weekeinde"
+             , "voorbije weekeind"
+             , "vorbije weekend"
              ]
   , examples (datetimeInterval ((2013, 2, 13, 18, 0, 0), (2013, 2, 14, 0, 0, 0)) Hour)
              [ "morgenavond"
@@ -735,137 +738,149 @@ allExamples = concat
              , "om 14:00"
              ]
   , examples (datetime (2013, 4, 25, 16, 0, 0) Minute)
-             [ "4/25 at 4:00pm"
+             [ "25/04 om 16:00"
              ]
   , examples (datetime (2013, 2, 13, 15, 0, 0) Hour)
-             [ "3pm tomorrow"
+             [ "15:00 morgen"
              ]
   , examples (datetimeOpenInterval Before (2013, 2, 12, 14, 0, 0) Minute)
-             [ "until 2:00pm"
-             , "through 2:00pm"
+             [ "tot 14:00"
+             , "voor 14:00"
              ]
   , examples (datetimeOpenInterval After (2013, 2, 12, 14, 0, 0) Hour)
-             [ "after 2 pm"
+             [ "na 14:00"
+             , "vanaf 14:00"
              ]
   , examples (datetimeOpenInterval After (2013, 2, 17, 4, 0, 0) Hour)
-             [ "after 5 days"
+             [ "na 5 dagen"
              ]
   , examples (datetimeOpenInterval Before (2013, 2, 12, 11, 0, 0) Hour)
-             [ "before 11 am"
+             [ "voor 11:00"
+             , "tot 11:00"
              ]
   , examples (datetimeInterval ((2013, 2, 12, 12, 0, 0), (2013, 2, 12, 19, 0, 0)) Hour)
-             [ "in the afternoon"
+             [ "in de middag"
              ]
   , examples (datetimeInterval ((2013, 2, 12, 8, 0, 0), (2013, 2, 12, 19, 0, 0)) Hour)
-             [ "8am until 6"
+             [ "8:00 tot 19u"
              ]
   , examples (datetime (2013, 2, 12, 13, 30, 0) Minute)
-             [ "at 1:30pm"
-             , "1:30pm"
+             [ "om 13:30"
+             , "13:30"
              ]
   , examples (datetime (2013, 2, 12, 4, 45, 0) Second)
-             [ "in 15 minutes"
-             , "in 15'"
-             , "in 15"
+             [ "over 15 minuten"
+             , "over 15'"
+             , "over een kwartier"
              ]
   , examples (datetimeInterval ((2013, 2, 12, 13, 0, 0), (2013, 2, 12, 17, 0, 0)) Hour)
-             [ "after lunch"
+             [ "na lunch"
              ]
   , examples (datetimeInterval ((2013, 2, 12, 15, 0, 0), (2013, 2, 12, 21, 0, 0)) Hour)
-             [ "after school"
+             [ "na school"
              ]
   , examples (datetime (2013, 2, 12, 10, 30, 0) Minute)
              [ "10:30"
-             , "approximately 1030"
+             , "ongeveer half elf"
              ]
   , examples (datetimeInterval ((2013, 2, 12, 4, 0, 0), (2013, 2, 12, 12, 0, 0)) Hour)
-             [ "this morning"
+             [ "deze morgen"
+             , "deze ochtend"
              ]
   , examples (datetime (2013, 2, 18, 0, 0, 0) Day)
-             [ "next monday"
+             [ "volgende maandag"
              ]
   , examples (datetime (2013, 2, 12, 12, 0, 0) Hour)
-             [ "at 12pm"
-             , "at noon"
+             [ "om 12:00"
              ]
   , examples (datetime (2013, 2, 13, 0, 0, 0) Hour)
-             [ "at 12am"
-             , "at midnight"
+             [ "om 24:00"
+             , "om 00:00"
+             , "om 0:00"
+             , "om middernacht"
              ]
   , examples (datetime (2013, 3, 1, 0, 0, 0) Month)
-             [ "March"
-             , "in March"
+             [ "maart"
+             , "in maart"
              ]
   , examples (datetime (2013, 2, 13, 17, 0, 0) Hour)
-             [ "tomorrow afternoon at 5"
-             , "at 5 tomorrow afternoon"
-             , "at 5pm tomorrow"
-             , "tomorrow at 5pm"
+             [ "morgenmiddag om 5u"
+             , "om 5u morgenmiddag"
+             , "om 17u morgen"
+             , "morgen om 17u"
              ]
   , examples (datetimeInterval ((2013, 2, 13, 12, 0, 0), (2013, 2, 13, 19, 0, 0)) Hour)
-             [ "tomorrow afternoon"
-             , "tomorrow afternoonish"
+             [ "morgenmiddag"
              ]
   , examples (datetimeInterval ((2013, 2, 13, 13, 0, 0), (2013, 2, 13, 15, 0, 0)) Hour)
-             [ "1pm-2pm tomorrow"
+             [ "13u-15u morgen"
              ]
   , examples (datetime (2013, 3, 1, 0, 0, 0) Day)
-             [ "on the first"
-             , "the 1st"
+             [ "op de eerste"
+             , "de eerste"
+             , "de 1ste"
              ]
   , examples (datetime (2013, 2, 12, 10, 30, 0) Minute)
-             [ "at 1030"
-             , "around 1030"
+             [ "om 10:30"
+             , "rond 10:30"
              ]
   , examples (datetime (2013, 2, 12, 19, 30, 0) Minute)
-             [ "at 730 in the evening"
+             [ "om 7u30 in de avond"
+             , "om 7u30 's avonds"
+             , "om 19u30"
+             , "om 19:30"
              ]
   , examples (datetime (2013, 2, 13, 1, 50, 0) Minute)
-             [ "tomorrow at 150ish"
+             [ "morgen om 1u50"
              ]
   , examples (datetime (2013, 2, 12, 23, 0, 0) Hour)
-             [ "tonight at 11"
+             [ "vanavond om 11u"
              ]
   , examples (datetime (2013, 2, 12, 4, 23, 0) Minute)
     -- yes, the result is in the past, we may need to revisit
-             [ "at 4:23"
-             , "4:23am"
+             [ "om 4:23"
+             , "4:23"
+             , "4u23"
              ]
   , examples (datetimeInterval ((2013, 3, 1, 0, 0, 0), (2013, 3, 11, 0, 0, 0)) Day)
-             [ "early March"
+             [ "begin maart"
              ]
   , examples (datetimeInterval ((2013, 3, 11, 0, 0, 0), (2013, 3, 21, 0, 0, 0)) Day)
-             [ "mid March"
+             [ "midden maart"
              ]
   , examples (datetimeInterval ((2013, 3, 21, 0, 0, 0), (2013, 4, 1, 0, 0, 0)) Day)
-             [ "late March"
+             [ "einde maart"
              ]
   , examples (datetimeInterval ((2013, 10, 25, 18, 0, 0), (2013, 10, 28, 0, 0, 0)) Hour)
-             [ "last weekend of October"
-             , "last week-end in October"
-             , "last week end of October"
+             [ "laatste weekend van oktober"
+             , "laatste weekeind in oktober"
+             , "laatste weekeinde in oktober"
              ]
   , examples (datetimeInterval ((2013, 7, 26, 18, 0, 0), (2013, 7, 29, 0, 0, 0)) Hour)
-             [ "last wkend of July"
+             [ "laatste weekend van juli"
+             , "laatste weekeinde van juli"
+              "laatste weekeind van juli"
              ]
   , examples (datetimeInterval ((2017, 10, 27, 18, 0, 0), (2017, 10, 30, 0, 0, 0)) Hour)
-             [ "last weekend of October 2017"
+             [ "laatste weekend van oktober 2017"
+             , "laatste weekeinde van oktober 2017"
+             , "laatste weekeind van oktober 2017"
              ]
   , examples (datetimeInterval ((2013, 8, 27, 0, 0, 0), (2013, 8, 30, 0, 0, 0)) Day)
-             [ "August 27th - 29th"
-             , "from August 27th - 29th"
+             [ "27 - 29 augustus"
+             , "from 27 - 29 augustus"
              ]
   , examples (datetimeInterval ((2013, 10, 23, 0, 0, 0), (2013, 10, 27, 0, 0, 0)) Day)
-             [ "23rd to 26th Oct"
+             [ "23ste tot 26ste oktober"
              ]
   , examples (datetimeInterval ((2013, 9, 1, 0, 0, 0), (2013, 9, 9, 0, 0, 0)) Day)
              [ "1-8 september"
              ]
   , examples (datetimeInterval ((2013, 9, 12, 0, 0, 0), (2013, 9, 17, 0, 0, 0)) Day)
-             [ "12 to 16 september"
+             [ "12 tot 16 september"
              ]
   , examples (datetimeInterval ((2013, 8, 19, 0, 0, 0), (2013, 8, 22, 0, 0, 0)) Day)
-             [ "19th To 21st aug"
+             [ "19 tot 21 augustus"
              ]
 
   ]

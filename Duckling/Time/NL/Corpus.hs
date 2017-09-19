@@ -278,7 +278,7 @@ allExamples = concat
              , "eergisteren 08:00"
              ]
   , examples (datetime (2013, 3, 25, 0, 0, 0) Day)
-             ["laatste maandag van maart""]
+             ["laatste maandag van maart"]
   , examples (datetime (2014, 3, 30, 0, 0, 0) Day)
              ["laatste zondag van maart 2014"]
   , examples (datetime (2013, 10, 3, 0, 0, 0) Day)

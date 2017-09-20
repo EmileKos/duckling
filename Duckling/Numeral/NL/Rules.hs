@@ -103,7 +103,7 @@ ruleInteger3 :: Rule
 ruleInteger3 = Rule
   { name = "integer ([2-9][1-9])"
   , pattern =
-    [ regex "(een|twee|drie|vier|vijf|zes|zeven|acht|negen)(\\w)?(e|ë)n(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)"
+    [ regex "(een|twee|drie|vier|vijf|zes|zeven|acht|negen)(s?en|ën)(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (m1:m2:_)):_) -> do
@@ -282,6 +282,34 @@ ruleInteger2 = Rule
       _ -> Nothing
   }
 
+ruleNumeralDotNumeral :: Rule
+ruleNumeralDotNumeral = Rule
+  { name = "number dot number"
+  , pattern =
+    [ dimension Numeral
+    , regex "komma"
+    , numberWith TNumeral.grain isNothing
+    ]
+  , prod = \tokens -> case tokens of
+      (Token Numeral (NumeralData {TNumeral.value = v1}):
+       _:
+       Token Numeral (NumeralData {TNumeral.value = v2}):
+       _) -> double $ v1 + decimalsToDouble v2
+      _ -> Nothing
+  }
+
+ruleIntegerWithThousandsSeparator :: Rule
+ruleIntegerWithThousandsSeparator = Rule
+  { name = "integer with thousands separator ."
+  , pattern =
+    [ regex "(\\d{1,3}(\\.\\d\\d\\d){1,5})"
+    ]
+  , prod = \tokens -> case tokens of
+      (Token RegexMatch (GroupMatch (match:_)):_) ->
+        parseDouble (Text.replace (Text.singleton '.') Text.empty match) >>= double
+      _ -> Nothing
+  }
+
 rules :: [Rule]
 rules =
   [ ruleCouple
@@ -291,9 +319,11 @@ rules =
   , ruleInteger
   , ruleInteger2
   , ruleInteger3
+  , ruleIntegerWithThousandsSeparator
   , ruleIntegerNumeric
   , ruleIntersect
   , ruleMultiply
+  , ruleNumeralDotNumeral
   , ruleNumeralsEn
   , ruleNumeralsPrefixWithNegativeOrMinus
   , ruleNumeralsSuffixesKMG

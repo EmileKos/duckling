@@ -317,7 +317,7 @@ ruleIntegerWithThousandsSeparator = Rule
   }
 ruleHundreds :: Rule
 ruleHundreds = Rule
-  { name = "101-..."
+  { name = "hundreds"
   , pattern =
     [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)honderd"
     ]
@@ -341,6 +341,7 @@ rules =
   , ruleDecimalNumeral
   , ruleDecimalWithThousandsSeparator
   , ruleFew
+  , ruleHundreds
   , ruleInteger
   , ruleInteger2
   , ruleInteger3

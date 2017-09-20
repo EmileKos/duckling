@@ -334,6 +334,18 @@ ruleHundreds = Rule
         _ -> Nothing
       _ -> Nothing
   }
+ruleThousands :: Rule
+ruleThousands = Rule
+  { name = "thousands"
+  , pattern = 
+    [ dimension Numeral
+    , regex "duizend"
+    ]
+  , prod = \tokens -> case tokens of
+      (Token Numeral (NumeralData {TNumeral.value = v1}):
+        _) -> integer multiply v1 duizend
+      _ -> Nothing
+  }
 
 rules :: [Rule]
 rules =
@@ -355,4 +367,5 @@ rules =
   , ruleNumeralsSuffixesKMG
   , rulePowersOfTen
   , ruleTen
+  , ruleThousands
   ]

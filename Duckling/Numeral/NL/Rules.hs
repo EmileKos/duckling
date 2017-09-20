@@ -146,7 +146,7 @@ ruleInteger3 = Rule
     [ regex "(een|twee|drie|vier|vijf|zes|zeven|acht|negen)(s?en|ën)(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)"
     ]
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (m1:m2:_)):_) -> do
+      (Token RegexMatch (GroupMatch (m1:m2:m3:_)):_) -> do
         v1 <- case Text.toLower m1 of
           "een" -> Just 1
           "twee" -> Just 2
@@ -158,7 +158,7 @@ ruleInteger3 = Rule
           "acht" -> Just 8
           "negen" -> Just 9
           _ -> Nothing
-        v2 <- case Text.toLower m2 of
+        v3 <- case Text.toLower m3 of
           "twintig" -> Just 20
           "dertig" -> Just 30
           "veertig" -> Just 40
@@ -168,7 +168,7 @@ ruleInteger3 = Rule
           "tachtig" -> Just 80
           "negentig" -> Just 90
           _ -> Nothing
-        integer $ v1 + v2
+        integer $ v1 + v3
       _ -> Nothing
   }
 

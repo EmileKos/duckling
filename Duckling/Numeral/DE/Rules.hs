@@ -353,7 +353,17 @@ ruleNumeralDotNumeral = Rule
       _ -> Nothing
   }
 
-
+ruleIntegerWithThousandsSeparator :: Rule
+ruleIntegerWithThousandsSeparator = Rule
+  { name = "integer with thousands separator ."
+  , pattern =
+    [ regex "(\\d{1,3}(\\.\\d\\d\\d){1,5})"
+    ]
+  , prod = \tokens -> case tokens of
+      (Token RegexMatch (GroupMatch (match:_)):_) ->
+        parseDouble (Text.replace (Text.singleton '.') Text.empty match) >>= double
+      _ -> Nothing
+  }
 
 rules :: [Rule]
 rules =

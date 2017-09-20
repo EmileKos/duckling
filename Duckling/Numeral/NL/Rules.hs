@@ -323,16 +323,16 @@ ruleHundreds = Rule
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
-          "twee"  -> integer 200
-          "drie"  -> integer 300
-          "vier"  -> integer 400
-          "vijf"  -> integer 500
-          "zes"   -> integer 600
-          "zeven" -> integer 700
-          "acht"  -> integer 800
-          "negen" -> integer 900
-          _ -> Nothing
+        "twee" -> integer 200
+        "drie" -> integer 300
+        "vier" -> integer 400
+        "vijf" -> integer 500
+        "zes" -> integer 600
+        "zeven" -> integer 700
+        "acht" -> integer 800
+        "negen" -> integer 900
         _ -> Nothing
+      _ -> Nothing
   }
 
 rules :: [Rule]

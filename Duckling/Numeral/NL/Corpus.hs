@@ -44,6 +44,7 @@ allExamples = concat
   , examples (NumeralValue 33)
              [ "33"
              , "3 en 30"
+             , "drieendertig"
              , "drieëndertig"
              , "0033"
              ]

@@ -342,8 +342,7 @@ ruleThousands = Rule
     , regex "duizend"
     ]
   , prod = \tokens -> case tokens of
-      (Token Numeral (NumeralData {TNumeral.value = v1}) : _) 
-        -> multiply v1 1000
+      (token1:_) -> multiply token1 1000
       _ -> Nothing
   }
 

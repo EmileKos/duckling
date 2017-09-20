@@ -47,12 +47,23 @@ zeroNineteenMap = HashMap.fromList
   , ("achttiende", 18)
   , ("negentiende", 19)
   ]
+cardinalsMap :: HashMap Text Int
+cardinalsMap = HashMap.fromList
+  [ ( "twintig", 20 )
+  , ( "dertig", 30 )
+  , ( "veertig", 40 )
+  , ( "vijftig", 50 )
+  , ( "zestig", 60 )
+  , ( "zeventig", 70 )
+  , ( "tachtig", 80 )
+  , ( "negentig", 90 )
+  ]
 
 ruleOrdinalsFirstth :: Rule
 ruleOrdinalsFirstth = Rule
   { name = "ordinals (first..19th)"
   , pattern =
-    [ regex "(eerste|tweede|derde|vierde|vijfde|zeste|zevende|achtste|negende|tiende|elfde|twaalfde|veertiende|vijftiende|zestiende|zeventiende|achttiende|negentiende)"
+    [ regex "(eerste|tweede|derde|vierde|vijfde|zesde|zevende|achtste|negende|tiende|elfde|twaalfde|veertiende|vijftiende|zestiende|zeventiende|achttiende|negentiende)"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) ->
@@ -60,11 +71,23 @@ ruleOrdinalsFirstth = Rule
       _ -> Nothing
   }
 
+ruleCompositeOrdinals :: Rule
+ruleCompositeOrdinals = Rule
+  { name = "ordinals (composite, e.g., >100)"
+  , pattern = [regex "(een|twee|drie|vier|vijf|zes|zeven|acht|negen)(en|ën)(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)ste"]
+  , prod = \tokens -> case tokens of
+      (Token RegexMatch (GroupMatch (tens:units:_)):_) -> do
+        uu <- HashMap.lookup (Text.toLower units) ordinalsMap
+        tt <- HashMap.lookup (Text.toLower tens) cardinalsMap
+        Just (ordinal (uu + tt))
+      _ -> Nothing
+  }
+
 ruleOrdinalDigits :: Rule
 ruleOrdinalDigits = Rule
   { name = "ordinal (digits)"
   , pattern =
-    [ regex "0*(\\d+)(\\.| ?(e|ste|de))"
+    [ regex "0*(\\d+) ?(e|ste|de)"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) ->
@@ -76,4 +99,5 @@ rules :: [Rule]
 rules =
   [ ruleOrdinalDigits
   , ruleOrdinalsFirstth
+  , ruleCompositeOrdinals
   ]

@@ -108,7 +108,7 @@ ruleAbsorbCommaTOD = Rule
 
 instants :: [(Text, String, TG.Grain, Int)]
 instants =
-  [ ("right now", "(nu|direct", TG.Second, 0)
+  [ ("right now", "(nu|direct)", TG.Second, 0)
   , ("today", "vandaag", TG.Day, 0)
   , ("tomorrow", "morgen", TG.Day, 1)
   , ("yesterday", "gisteren", TG.Day, - 1)

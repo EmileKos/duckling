@@ -200,7 +200,7 @@ ruleDozen :: Rule
 ruleDozen = Rule
   { name = "a dozen of"
   , pattern =
-    [ regex "(een )?dozijn(en)?( van)?"
+    [ regex "(een )?dozijn( van)?"
     ]
   , prod = \_ -> integer 12 >>= withGrain 1
   }

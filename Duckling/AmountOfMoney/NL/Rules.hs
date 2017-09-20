@@ -148,8 +148,8 @@ ruleIntersect = Rule
     , financeWith TAmountOfMoney.value isJust
     ]
   , prod = \tokens -> case tokens of
-      (Token AmountOfMoney fd:
-       Token Numeral (NumeralData {TNumeral.value = c}):
+      (Token Numeral (NumeralData {TNumeral.value = c}):
+       Token AmountOfMoney fd:
        _) -> Just . Token AmountOfMoney $ withCents c fd
       _ -> Nothing
   }
@@ -274,7 +274,7 @@ ruleIntervalMax :: Rule
 ruleIntervalMax = Rule
   { name = "under/less/lower/no more than <amount-of-money>"
   , pattern =
-    [ regex "onder|(minder|lager|niet meer) dan"
+    [ regex "(onder|minder|lager|niet meer) dan"
     , financeWith TAmountOfMoney.value isJust
     ]
   , prod = \tokens -> case tokens of
@@ -288,7 +288,7 @@ ruleIntervalMin :: Rule
 ruleIntervalMin = Rule
   { name = "over/above/at least/more than <amount-of-money>"
   , pattern =
-    [ regex "over|boven|minstens|meer dan"
+    [ regex "(over|boven|minstens|meer) dan"
     , financeWith TAmountOfMoney.value isJust
     ]
   , prod = \tokens -> case tokens of

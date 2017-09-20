@@ -59,7 +59,6 @@ allExamples = concat
   , examples (NumeralValue 12)
              [ "12"
              , "twaalf"
-             , "een dozijn"
              ]
   , examples (NumeralValue 13)
              [ "13"
@@ -84,8 +83,6 @@ allExamples = concat
   , examples (NumeralValue 24)
              [ "24"
              , "vierentwintig"
-             , "twee dozijn"
-             , "twee dozijnen"
              ]             
   , examples (NumeralValue 1.1)
              [ "1,1"
@@ -162,12 +159,6 @@ allExamples = concat
              ]
   , examples (NumeralValue 31256721)
              [ "eenendertig miljoen tweehonderdzessenvijftigduizend zevenhonderdeenentwintig"
-             ]
-  , examples (NumeralValue 2400)
-             [ "tweehonderd dozijn"
-             , "tweehonderd dozijnen"
-             , "200 dozijn"
-             , "200 dozijnen"
              ]
   , examples (NumeralValue 2200000)
              [ "twee miljoen tweehonderdduizend"

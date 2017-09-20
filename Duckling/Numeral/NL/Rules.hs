@@ -36,7 +36,8 @@ ruleNumeralsPrefixWithNegativeOrMinus = Rule
     , dimension Numeral
     ]
   , prod = \tokens -> case tokens of
-      (_:Token Numeral nd:_) -> double (TNumeral.value nd * (-1))
+      (_:Token Numeral (NumeralData {TNumeral.value = v}):_) ->
+        double $ v * (- 1)
       _ -> Nothing
   }
 
@@ -48,8 +49,8 @@ ruleIntegerNumeric = Rule
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) -> do
-        v <- toInteger <$> parseInt match
-        integer v
+        v <- parseInt match
+        integer $ toInteger v
       _ -> Nothing
   }
 
@@ -78,10 +79,10 @@ ruleDecimalWithThousandsSeparator = Rule
     [ regex "(\\d+(\\.\\d\\d\\d)+,\\d+)"
     ]
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (match:_)):
-       _) -> let dot = Text.singleton '.'
-                 comma = Text.singleton ','
-                 fmt = Text.replace comma dot $ Text.replace dot Text.empty match
+      (Token RegexMatch (GroupMatch (match:_)):_) ->
+        let dot = Text.singleton '.'
+            comma = Text.singleton ','
+            fmt = Text.replace comma dot $ Text.replace dot Text.empty match
         in parseDouble fmt >>= double
       _ -> Nothing
   }
@@ -93,8 +94,8 @@ ruleDecimalNumeral = Rule
     [ regex "(\\d*,\\d+)"
     ]
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (match:_)):
-       _) -> parseDecimal False match
+      (Token RegexMatch (GroupMatch (match:_)):_) ->
+        parseDecimal False match
       _ -> Nothing
   }
 
@@ -102,11 +103,21 @@ ruleInteger3 :: Rule
 ruleInteger3 = Rule
   { name = "integer ([2-9][1-9])"
   , pattern =
-    [ regex "(een|twee|drie|vier|vijf|zes|zeven|acht|negen)(?:e|ë)n(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)"
+    [ regex "(een|twee|drie|vier|vijf|zes|zeven|acht|negen)(\\w)?(e|ë)n(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (m1:m2:_)):_) -> do
-        v1 <- HashMap.lookup (Text.toLower m1) zeroNineteenMap
+        v1 <- case Text.toLower m1 of
+          "een" -> Just 1
+          "twee" -> Just 2
+          "drie" -> Just 3
+          "vier" -> Just 4
+          "vijf" -> Just 5
+          "zes" -> Just 6
+          "zeven" -> Just 7
+          "acht" -> Just 8
+          "negen" -> Just 9
+          _ -> Nothing
         v2 <- HashMap.lookup (Text.toLower m2) dozenMap
         integer $ v1 + v2
       _ -> Nothing
@@ -196,15 +207,6 @@ ruleCouple = Rule
   , prod = \_ -> integer 2
   }
 
-ruleDozen :: Rule
-ruleDozen = Rule
-  { name = "a dozen of"
-  , pattern =
-    [ regex "(een )?dozijn( van)?"
-    ]
-  , prod = \_ -> integer 12 >>= withGrain 1
-  }
-
 zeroNineteenMap :: HashMap Text Integer
 zeroNineteenMap = HashMap.fromList
   [ ("niks", 0)
@@ -232,11 +234,23 @@ zeroNineteenMap = HashMap.fromList
   , ("negentien", 19)
   ]
 
+informalMap :: HashMap Text Integer
+informalMap = HashMap.fromList
+  [ ( "enkele?", 1 )
+  , ( "een paar", 2 )
+  , ( "paar", 2 )
+  , ( "koppel", 2 )
+  , ( "koppel van", 2 )
+  , ( "paar of", 2 )
+  , ( "een koppel van", 2 )
+  , ( "een aantal", 3 )
+  ]
+
 ruleInteger :: Rule
 ruleInteger = Rule
   { name = "integer (0..19)"
   , pattern =
-    [ regex "(geen|nul|niks|een|één|twee|drie|vier|vijftien|vijf|zestien|zes|zeventien|zeven|achttien|acht|negentien|negen|tien|elf|twaalf|dertien|veertien)"
+    [ regex "(geen|nul|niks|één|een|twee|drie|vier|vijftien|vijf|zestien|zes|zeventien|zeven|achttien|acht|negentien|negen|tien|elf|twaalf|dertien|veertien)"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) ->
@@ -273,7 +287,6 @@ rules =
   [ ruleCouple
   , ruleDecimalNumeral
   , ruleDecimalWithThousandsSeparator
-  , ruleDozen
   , ruleFew
   , ruleInteger
   , ruleInteger2

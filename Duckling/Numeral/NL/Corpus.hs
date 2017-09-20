@@ -45,7 +45,7 @@ allExamples = concat
              [ "33"
              , "3 en 30"
              , "drieendertig"
-             , "drieëndertig"
+             , "driesendertig"
              , "0033"
              ]
   , examples (NumeralValue 10)

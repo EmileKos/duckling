@@ -77,8 +77,8 @@ ruleCompositeOrdinals = Rule
   , pattern = [regex "(een|twee|drie|vier|vijf|zes|zeven|acht|negen)(en|ën)(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)ste"]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (tens:units:_)):_) -> do
-        uu <- HashMap.lookup (Text.toLower units) ordinalsMap
-        tt <- HashMap.lookup (Text.toLower tens) zeroNineteenMap
+        uu <- HashMap.lookup (Text.toLower units) zeroNineteenMap
+        tt <- HashMap.lookup (Text.toLower tens) cardinalsMap
         Just (ordinal (uu + tt))
       _ -> Nothing
   }

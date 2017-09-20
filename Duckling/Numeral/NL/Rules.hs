@@ -275,8 +275,7 @@ ruleInteger2 = Rule
     [ regex "(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)"
     ]
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (match:_)):_) ->
-        (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
+      (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
         "twintig" -> integer 20
         "dertig" -> integer 30
         "veertig" -> integer 40

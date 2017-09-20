@@ -342,7 +342,7 @@ ruleThousands = Rule
     , regex "duizend"
     ]
   , prod = \tokens -> case tokens of
-      (token1:_) -> multiply token1 1000
+      (token1:_) -> multiply token1 1e3
       _ -> Nothing
   }
 

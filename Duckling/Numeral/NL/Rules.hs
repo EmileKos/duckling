@@ -28,6 +28,57 @@ import qualified Duckling.Numeral.Types as TNumeral
 import Duckling.Regex.Types
 import Duckling.Types
 
+dozenMap :: HashMap Text Integer
+dozenMap = HashMap.fromList
+  [ ("twintig", 20)
+  , ("dertig", 30)
+  , ("veertig", 40)
+  , ("vijftig", 50)
+  , ("zestig", 60)
+  , ("zeventig", 70)
+  , ("tachtig", 80)
+  , ("negentig", 90)
+  ]
+
+zeroNineteenMap :: HashMap Text Integer
+zeroNineteenMap = HashMap.fromList
+  [ ("niks", 0)
+  , ("nul", 0)
+  , ("geen", 0)
+  , ("één", 1)
+  , ("een", 1)
+  , ("twee", 2)
+  , ("drie", 3)
+  , ("vier", 4)
+  , ("vijf", 5)
+  , ("zes", 6)
+  , ("zeven", 7)
+  , ("acht", 8)
+  , ("negen", 9)
+  , ("tien", 10)
+  , ("elf", 11)
+  , ("twaalf", 12)
+  , ("dertien", 13)
+  , ("veertien", 14)
+  , ("vijftien", 15)
+  , ("zestien", 16)
+  , ("zeventien", 17)
+  , ("achttien", 18)
+  , ("negentien", 19)
+  ]
+
+informalMap :: HashMap Text Integer
+informalMap = HashMap.fromList
+  [ ( "enkele?", 1 )
+  , ( "een paar", 2 )
+  , ( "paar", 2 )
+  , ( "koppel", 2 )
+  , ( "koppel van", 2 )
+  , ( "paar of", 2 )
+  , ( "een koppel van", 2 )
+  , ( "een aantal", 3 )
+  ]
+
 ruleNumeralsPrefixWithNegativeOrMinus :: Rule
 ruleNumeralsPrefixWithNegativeOrMinus = Rule
   { name = "numbers prefix with -, negative or minus"
@@ -172,7 +223,7 @@ ruleNumeralsEn = Rule
   { name = "numbers en"
   , pattern =
     [ numberBetween 1 10
-    , regex "en"
+    , regex "s?en|ën"
     , oneOf [20, 30 .. 90]
     ]
   , prod = \tokens -> case tokens of
@@ -207,45 +258,6 @@ ruleCouple = Rule
   , prod = \_ -> integer 2
   }
 
-zeroNineteenMap :: HashMap Text Integer
-zeroNineteenMap = HashMap.fromList
-  [ ("niks", 0)
-  , ("nul", 0)
-  , ("geen", 0)
-  , ("één", 1)
-  , ("een", 1)
-  , ("twee", 2)
-  , ("drie", 3)
-  , ("vier", 4)
-  , ("vijf", 5)
-  , ("zes", 6)
-  , ("zeven", 7)
-  , ("acht", 8)
-  , ("negen", 9)
-  , ("tien", 10)
-  , ("elf", 11)
-  , ("twaalf", 12)
-  , ("dertien", 13)
-  , ("veertien", 14)
-  , ("vijftien", 15)
-  , ("zestien", 16)
-  , ("zeventien", 17)
-  , ("achttien", 18)
-  , ("negentien", 19)
-  ]
-
-informalMap :: HashMap Text Integer
-informalMap = HashMap.fromList
-  [ ( "enkele?", 1 )
-  , ( "een paar", 2 )
-  , ( "paar", 2 )
-  , ( "koppel", 2 )
-  , ( "koppel van", 2 )
-  , ( "paar of", 2 )
-  , ( "een koppel van", 2 )
-  , ( "een aantal", 3 )
-  ]
-
 ruleInteger :: Rule
 ruleInteger = Rule
   { name = "integer (0..19)"
@@ -257,18 +269,6 @@ ruleInteger = Rule
         HashMap.lookup (Text.toLower match) zeroNineteenMap >>= integer
       _ -> Nothing
   }
-
-dozenMap :: HashMap Text Integer
-dozenMap = HashMap.fromList
-  [ ("twintig", 20)
-  , ("dertig", 30)
-  , ("veertig", 40)
-  , ("vijftig", 50)
-  , ("zestig", 60)
-  , ("zeventig", 70)
-  , ("tachtig", 80)
-  , ("negentig", 90)
-  ]
 
 ruleInteger2 :: Rule
 ruleInteger2 = Rule

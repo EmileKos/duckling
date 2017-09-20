@@ -43,11 +43,11 @@ classifiers
                                  HashMap.fromList
                                    [("time-of-day (latent)", -0.6931471805599453),
                                     ("hour", -0.6931471805599453)],
-                               n = 10},
+                               n = 10}},
                    koData =
                      ClassData{prior = -infinity, unseen = -1.0986122886681098,
                                likelihoods = HashMap.fromList [], n = 0}}),
-       ("<time> <part-of-day>",
+       ("<time> <part-of-day>", 
         Classifier{okData =
                      ClassData{prior = -0.5108256237659907, unseen = -2.995732273553991,
                                likelihoods =

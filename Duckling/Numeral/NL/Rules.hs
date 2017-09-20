@@ -28,17 +28,6 @@ import qualified Duckling.Numeral.Types as TNumeral
 import Duckling.Regex.Types
 import Duckling.Types
 
-dozenMap :: HashMap Text Integer
-dozenMap = HashMap.fromList
-  [ ("twintig", 20)
-  , ("dertig", 30)
-  , ("veertig", 40)
-  , ("vijftig", 50)
-  , ("zestig", 60)
-  , ("zeventig", 70)
-  , ("tachtig", 80)
-  , ("negentig", 90)
-  ]
 
 zeroNineteenMap :: HashMap Text Integer
 zeroNineteenMap = HashMap.fromList
@@ -169,7 +158,16 @@ ruleInteger3 = Rule
           "acht" -> Just 8
           "negen" -> Just 9
           _ -> Nothing
-        v2 <- HashMap.lookup (Text.toLower m2) dozenMap
+        v2 <- case Text.toLower m2 of
+          "twintig" -> Just 20
+          "dertig" -> Just 30
+          "veertig" -> Just 40
+          "vijftig" -> Just 50
+          "zestig" -> Just 60
+          "zeventig" -> Just 70
+          "tachtig" -> Just 80
+          "negentig" -> Just 90
+          _ -> Nothing
         integer $ v1 + v2
       _ -> Nothing
   }
@@ -278,7 +276,16 @@ ruleInteger2 = Rule
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) ->
-        HashMap.lookup (Text.toLower match) dozenMap >>= integer
+        (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
+        "twintig" -> integer 20
+        "dertig" -> integer 30
+        "veertig" -> integer 40
+        "vijftig" -> integer 50
+        "zestig" -> integer 60
+        "zeventig" -> integer 70
+        "tachtig" -> integer 80
+        "negentig" -> integer 90
+        _ -> Nothing
       _ -> Nothing
   }
 

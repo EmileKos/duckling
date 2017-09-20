@@ -41,13 +41,6 @@ allExamples = concat
              , "een paar"
              , "paar"
              ]
-  , examples (NumeralValue 33)
-             [ "33"
-             , "3 en 30"
-             , "drieendertig"
-             , "driesendertig"
-             , "0033"
-             ]
   , examples (NumeralValue 10)
              [ "10"
              , "tien"
@@ -84,6 +77,13 @@ allExamples = concat
              [ "24"
              , "vierentwintig"
              ]             
+  , examples (NumeralValue 33)
+             [ "33"
+             , "3 en 30"
+             , "drieëndertig"
+             , "drieendertig"
+             , "0033"
+             ]        
   , examples (NumeralValue 1.1)
              [ "1,1"
              , "1,10"

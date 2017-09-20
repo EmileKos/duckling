@@ -52,8 +52,8 @@ negativeCorpus = (testContext, examples)
 allExamples :: [Example]
 allExamples = concat
   [ examples (datetime (2013, 2, 12, 4, 30, 0) Second)
-             [ "nu"
-             , "dit moment"
+             [ 
+              "dit moment"
              , "juist nu"
              ]
   , examples (datetime (2013, 2, 12, 0, 0, 0) Day)

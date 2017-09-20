@@ -72,7 +72,7 @@ ruleNumeralsPrefixWithNegativeOrMinus :: Rule
 ruleNumeralsPrefixWithNegativeOrMinus = Rule
   { name = "numbers prefix with -, negative or minus"
   , pattern =
-    [ regex "-|min|minus|negatief|test"
+    [ regex "-|min(us)?|negatief"
     , dimension Numeral
     ]
   , prod = \tokens -> case tokens of

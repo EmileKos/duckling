@@ -343,7 +343,7 @@ ruleThousands = Rule
     ]
   , prod = \tokens -> case tokens of
       (Token Numeral (NumeralData {TNumeral.value = v1}) : _) 
-        -> integer v1*1000
+        -> multiply v1 1000
       _ -> Nothing
   }
 

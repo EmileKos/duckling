@@ -144,8 +144,8 @@ ruleIntersect :: Rule
 ruleIntersect = Rule
   { name = "intersect"
   , pattern =
-    [ financeWith TAmountOfMoney.value isJust
-    , dimension Numeral
+    [ dimension Numeral 
+    , financeWith TAmountOfMoney.value isJust
     ]
   , prod = \tokens -> case tokens of
       (Token AmountOfMoney fd:

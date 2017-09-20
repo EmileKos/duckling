@@ -338,7 +338,7 @@ ruleThousands :: Rule
 ruleThousands = Rule
   { name = "thousands"
   , pattern = 
-    [ dimension Numeral
+    [ numberWith TNumeral.multipliable id
     , regex "duizend"
     ]
   , prod = \tokens -> case tokens of

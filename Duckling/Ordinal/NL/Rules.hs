@@ -46,6 +46,7 @@ zeroNineteenMap = HashMap.fromList
   , ("zeventiende", 17)
   , ("achttiende", 18)
   , ("negentiende", 19)
+  , ("honderdste", 100)
   ]
 cardinalsMap :: HashMap Text Int
 cardinalsMap = HashMap.fromList
@@ -75,7 +76,7 @@ ruleOrdinalsFirstth :: Rule
 ruleOrdinalsFirstth = Rule
   { name = "ordinals (first..19th)"
   , pattern =
-    [ regex "(eerste|tweede|derde|vierde|vijfde|zesde|zevende|achtste|negende|tiende|elfde|twaalfde|veertiende|vijftiende|zestiende|zeventiende|achttiende|negentiende)"
+    [ regex "(eerste|tweede|derde|vierde|vijfde|zesde|zevende|achtste|negende|tiende|elfde|twaalfde|veertiende|vijftiende|zestiende|zeventiende|achttiende|negentiende|honderdste)"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) ->
@@ -118,10 +119,29 @@ ruleOrdinalDigits = Rule
         ordinal <$> parseInt match
       _ -> Nothing
   }
-
+ruleHundreds :: Rule
+ruleHundreds = Rule
+  { name= "hundreds"
+  , pattern=
+    [regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)honderdste"
+    ]
+  , prod = \tokens -> case tokens of
+      (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
+        "twee" -> Just ordinal 200
+        "drie" -> Just ordinal 300
+        "vier" -> Just ordinal 400
+        "vijf" -> Just ordinal 500
+        "zes" -> Just ordinal 600
+        "zeven" -> Just ordinal 700
+        "acht" -> Just ordinal 800
+        "negen" -> Just ordinal 900
+        _ -> Nothing
+  }
 rules :: [Rule]
 rules =
-  [ ruleOrdinalDigits
+  [ ruleCompositeOrdinals 
+  , ruleHundreds
+  , ruleOrdinalDigits
+  , ruleOrdinals
   , ruleOrdinalsFirstth
-  , ruleCompositeOrdinals
   ]

@@ -398,9 +398,9 @@ ruleHundredsAnd = Rule
       _ -> Nothing
   }
 
-ruleTousands :: Rule
-ruleTousands = Rule
-  { name = "tousands"
+ruleThousands :: Rule
+ruleThousands = Rule
+  { name = "thousands"
   , pattern =
     [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)duizend"
     ]

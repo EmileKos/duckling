@@ -1170,7 +1170,7 @@ daysOfWeek =
   , ( "Dinsdag"  , "dinsdag|di\\.?"        )
   , ( "Woensdag" , "woensdag|woe?\\.?"     )
   , ( "Donderdag", "donderdag|do\\.?"      )
-  , ( "Vrijdag"  , "vrijdag|vr(ij)?\\.?"     )
+  , ( "Vrijdag"  , "vrijdag|vr(ij)?\\.?"   )
   , ( "Zaterdag" , "zaterdag|zat?\\.?"     )
   , ( "Zondag"   , "zondag|zo\\.?"         )
   ]
@@ -1239,7 +1239,7 @@ beHolidays =
   , ( "Nieuwjaar"        , "nieuw(jaar)?s?(dag)?", 1 , 1  )
   , ( "Valentijnsdag"    , "valentijns?(dag)?"   , 2 , 14 )
   , ( "Halloween"        , "hall?oween"          , 10, 31 )
-  , ( "Dag van de Arbeid", "dag van de arbeid"   , 5 , 1   )
+  , ( "Dag van de Arbeid", "dag van de arbeid"   , 5 , 1  )
   ]
 
 ruleBEHolidays :: [Rule]

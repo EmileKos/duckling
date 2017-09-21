@@ -405,7 +405,7 @@ ruleTousands = Rule
     [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)duizend"
     ]
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (m1:m2_)):_) -> case Text.toLower match of
+      (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
         "twee" -> integer 2000
         "drie" -> integer 3000
         "vier" -> integer 4000
@@ -425,7 +425,7 @@ ruleHTousands = Rule
     [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)?honderdduizend"
     ]
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (m1:m2_)):_) -> case Text.toLower match of
+      (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
         "twee" -> integer 200000
         "drie" -> integer 300000
         "vier" -> integer 400000

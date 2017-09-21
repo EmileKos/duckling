@@ -54,7 +54,7 @@ allExamples = concat
              [ "30 dagen"
              ]
   , examples (DurationData 7 Week)
-             [ "seven weken"
+             [ "zeven weken"
              ]
   , examples (DurationData 1 Month)
              [ "1 maand"

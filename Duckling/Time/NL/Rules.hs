@@ -670,7 +670,7 @@ ruleMMYYYY :: Rule
 ruleMMYYYY = Rule
   { name = "mm/yyyy"
   , pattern =
-    [ regex "(0?[1-9]|1[0-2])[/-\\.](\\d{4})"
+    [ regex "(0?[1-9]|1[0-2])[/-](\\d{4})"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (mm:yy:_)):_) -> do
@@ -684,7 +684,7 @@ ruleMMDDYYYY :: Rule
 ruleMMDDYYYY = Rule
   { name = "dd/mm/yyyy"
   , pattern =
-    [regex "(3[01]|[12]\\d|0?[1-9])[-/](0?[1-9]|1[0-2])[/-](\\d{2,4})"
+    [regex "(3[01]|[12]\\d|0?[1-9])[/-](0?[1-9]|1[0-2])[-/](\\d{2,4})"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (dd:mm:yy:_)):_) -> do
@@ -1213,7 +1213,7 @@ rulePartOfMonth :: Rule
 rulePartOfMonth = Rule
   { name = "part of <named-month>"
   , pattern =
-    [ regex "(vroege?|midden|laa?te?)-?( van)?"
+    [ regex "(vroege?|midden|laa?te?)\\-?( van)?"
     , Predicate isAMonth
     ]
   , prod = \tokens -> case tokens of
@@ -1645,6 +1645,7 @@ rules =
   , ruleTimezone
   , rulePartOfMonth
   , ruleNow
+  , ruleInstants
   ]
   ++ ruleInstants
   ++ ruleDaysOfWeek

@@ -468,6 +468,6 @@ rules =
   , rulePowersOfTen
   , ruleTen
   , ruleThousands
-  , ruleHThousande
+  , ruleHThousand
   , ruleHThousands
   ]

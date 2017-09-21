@@ -241,7 +241,7 @@ ruleIntersect = Rule
   , prod = \tokens -> case tokens of
       (Token Numeral (NumeralData {TNumeral.value = val1, TNumeral.grain = Just g}):
        Token Numeral (NumeralData {TNumeral.value = val2}):
-       _) | (10 ** fromIntegral g) > val2 -> double $ val1 + val2
+       _) | (10 ** fromIntegral g) > val2 -> double $ val1 * val2
       _ -> Nothing
   }
 

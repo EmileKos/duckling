@@ -373,5 +373,4 @@ rules =
   , ruleNumeralsSuffixesKMG
   , rulePowersOfTen
   , ruleTen
-  , ruleThousands
   ]

@@ -127,8 +127,8 @@ ruleHundreds = Rule
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
-        "twee" -> ordinal <$> 200
-        "drie" -> ordinal <$> 300
+        "twee" -> ordinal <$> Just 200
+        "drie" -> ordinal <$> Just 300
         "vier" -> ordinal <$> 400
         "vijf" -> ordinal <$> 500
         "zes" -> ordinal <$> 600

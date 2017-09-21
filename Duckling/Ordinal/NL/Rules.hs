@@ -129,12 +129,12 @@ ruleHundreds = Rule
       (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
         "twee" -> ordinal <$> Just 200
         "drie" -> ordinal <$> Just 300
-        "vier" -> ordinal <$> 400
-        "vijf" -> ordinal <$> 500
-        "zes" -> ordinal <$> 600
-        "zeven" -> ordinal <$> 700
-        "acht" -> ordinal <$> 800
-        "negen" -> ordinal <$> 900
+        "vier" -> ordinal <$> Just 400
+        "vijf" -> ordinal <$> Just 500
+        "zes" -> ordinal <$> Just 600
+        "zeven" -> ordinal <$> Just 700
+        "acht" -> ordinal <$> Just 800
+        "negen" -> ordinal <$> Just 900
         _ -> Nothing
   }
 rules :: [Rule]

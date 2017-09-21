@@ -190,10 +190,11 @@ ruleInteger4 = Rule
           "acht" -> Just 8
           "negen" -> Just 9
           _ -> Nothing
-        v2 <- case Text.toLower m1 of
+        v2 <- case Text.toLower m2 of
           "honderd" -> Just 100
           "duizend" -> Just 1000    
-        v4 <- case Text.toLower m1 of
+          _ -> Nothing
+        v4 <- case Text.toLower m4 of
           "een" -> Just 1
           "twee" -> Just 2
           "drie" -> Just 3
@@ -204,7 +205,7 @@ ruleInteger4 = Rule
           "acht" -> Just 8
           "negen" -> Just 9
           _ -> Nothing
-        v6 <- case Text.toLower m3 of
+        v6 <- case Text.toLower m6 of
           "twintig" -> Just 20
           "dertig" -> Just 30
           "veertig" -> Just 40

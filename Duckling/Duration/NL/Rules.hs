@@ -81,7 +81,7 @@ ruleDurationNumeralMore = Rule
 ruleDurationDotNumeralHours :: Rule
 ruleDurationDotNumeralHours = Rule
   { name = "number.number hours"
-  , pattern = [regex "(\\d+)\\.(\\d+) *u(u?r(en)?)?"]
+  , pattern = [regex "(\\d+)\\,(\\d+) *u(u?r(en)?)?"]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (h:m:_)):_) -> do
         hh <- parseInteger h

@@ -417,17 +417,17 @@ ruleTousands = Rule
         _ -> Nothing
       _ -> Nothing
   }
-ruleHTousand :: Rule
-ruleHTousand = Rule
-  { name = "hundredtausand"
+ruleHThousand :: Rule
+ruleHThousand = Rule
+  { name = "hundredthousand"
   , pattern =
     [regex "honderdduizend"
     ]
   , prod = \_ -> integer 100000
   }
-ruleHTousands :: Rule
-ruleHTousands = Rule
-  { name = "hundredtousands"
+ruleHThousands :: Rule
+ruleHThousands = Rule
+  { name = "hundredthousands"
   , pattern =
     [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)?honderdduizend"
     ]
@@ -467,6 +467,7 @@ rules =
   , ruleNumeralsSuffixesKMG
   , rulePowersOfTen
   , ruleTen
-  , ruleTousands
-  , ruleHTousands
+  , ruleThousands
+  , ruleHThousande
+  , ruleHThousands
   ]

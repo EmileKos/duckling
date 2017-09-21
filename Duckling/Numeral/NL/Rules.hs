@@ -334,6 +334,23 @@ ruleHundreds = Rule
         _ -> Nothing
       _ -> Nothing
   }
+
+ruleHundredsAnd ::Rule
+ruleHundreds = Rule
+  { name = "hundreds en"
+  , pattern =
+    [ oneOf [100, 200 .. 900]
+    , regex "(en)?"
+    , numberBetween 1 99]
+    ]
+  , prod = \tokens -> case tokens of
+      (Token Numeral (NumeralData {TNumeral.value = v1}):
+       _:
+       Token Numeral (NumeralData {TNumeral.value = v2}):
+       _) -> double $ v1 + v2
+      _ -> Nothing
+  }
+
 ruleThousands :: Rule
 ruleThousands = Rule
   { name = "thousands"
@@ -353,6 +370,7 @@ rules =
   , ruleDecimalWithThousandsSeparator
   , ruleFew
   , ruleHundreds
+  , ruleHundredsAnd
   , ruleInteger
   , ruleInteger2
   , ruleInteger3

@@ -1657,8 +1657,9 @@ rules =
   , ruleTimezone
   , rulePartOfMonth
   , ruleNow
+  , ruleInstants
+  , ruleDaysOfWeek
+  , ruleMonths
+  , ruleBEHolidays
   ]
-  ++ ruleInstants
-  ++ ruleDaysOfWeek
-  ++ ruleMonths
-  ++ ruleBEHolidays
+

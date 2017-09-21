@@ -108,7 +108,7 @@ ruleDurationA :: Rule
 ruleDurationA = Rule
   { name = "a <unit-of-duration>"
   , pattern =
-    [ regex "een|één"
+    [ regex "(een|één)"
     , dimension TimeGrain
     ]
   , prod = \tokens -> case tokens of

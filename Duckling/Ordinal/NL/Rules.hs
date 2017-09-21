@@ -59,6 +59,18 @@ cardinalsMap = HashMap.fromList
   , ( "negentig", 90 )
   ]
 
+ordinalsMap :: HashMap Text Int
+ordinalsMap = HashMap.fromList
+  [ ( "twintigste", 20 )
+  , ( "dertigste", 30 )
+  , ( "veertigste", 40 )
+  , ( "vijftigste", 50 )
+  , ( "zestigste", 60 )
+  , ( "zeventigste", 70 )
+  , ( "tachtigste", 80 )
+  , ( "negentigste", 90 )
+ ]
+
 ruleOrdinalsFirstth :: Rule
 ruleOrdinalsFirstth = Rule
   { name = "ordinals (first..19th)"
@@ -71,12 +83,24 @@ ruleOrdinalsFirstth = Rule
       _ -> Nothing
   }
 
+ruleOrdinals :: Rule
+ruleOrdinals = Rule
+  { name = "ordinals (20..90)"
+  , pattern =
+    [ regex "(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)ste"
+    ]
+  , prod = \tokens -> case tokens of
+      (Token RegexMatch (GroupMatch (match:_)):_) ->
+        ordinal <$> HashMap.lookup (Text.toLower match) ordinalsMap
+      _ -> Nothing
+  }
+
 ruleCompositeOrdinals :: Rule
 ruleCompositeOrdinals = Rule
   { name = "ordinals (composite, e.g., >100)"
   , pattern = [regex "(een|twee|drie|vier|vijf|zes|zeven|acht|negen)(en|ën)(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)ste"]
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (tens:units:_)):_) -> do
+      (Token RegexMatch (GroupMatch (units:_:tens:_)):_) -> do
         uu <- HashMap.lookup (Text.toLower units) zeroNineteenMap
         tt <- HashMap.lookup (Text.toLower tens) cardinalsMap
         Just (ordinal (uu + tt))

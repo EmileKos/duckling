@@ -1059,7 +1059,7 @@ ruleIntervalTODFrom = Rule
       _ -> Nothing
   }
 
--- We can't take generic TOD (e.g. "6:30am - 9pm").
+-- We can't take  generic TOD (e.g. "6:30am - 9pm").
 -- Those are handled by other rules.
 ruleIntervalTODAMPM :: Rule
 ruleIntervalTODAMPM = Rule

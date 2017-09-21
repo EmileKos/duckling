@@ -417,7 +417,14 @@ ruleTousands = Rule
         _ -> Nothing
       _ -> Nothing
   }
-
+ruleHTousand :: Rule
+ruleHTousand = Rule
+  { name= "hundredtausand"
+  , pattern =
+    [regex = "honderdduizend"
+    ]
+  , prod = \_ -> integer 100000
+  }
 ruleHTousands :: Rule
 ruleHTousands = Rule
   { name = "hundredtousands"

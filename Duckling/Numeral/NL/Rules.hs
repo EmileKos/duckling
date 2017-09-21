@@ -336,7 +336,7 @@ ruleHundreds = Rule
   }
 
 ruleHundredsAnd ::Rule
-ruleHundreds = Rule
+ruleHundredsAnd = Rule
   { name = "hundreds en"
   , pattern =
     [ oneOf [100, 200 .. 900]

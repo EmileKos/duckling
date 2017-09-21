@@ -351,17 +351,6 @@ ruleHundredsAnd = Rule
       _ -> Nothing
   }
 
-ruleThousands :: Rule
-ruleThousands = Rule
-  { name = "thousands"
-  , pattern = 
-    [ numberWith TNumeral.multipliable id
-    , regex "duizend"
-    ]
-  , prod = \tokens -> case tokens of
-      (token1:_) -> token1* integer 1000
-      _ -> Nothing
-  }
 
 rules :: [Rule]
 rules =

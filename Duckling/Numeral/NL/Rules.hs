@@ -179,7 +179,7 @@ ruleInteger4 = Rule
     [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)?(honderd|duizend)(en| )?(een|twee|drie|vier|vijf|zes|zeven|acht|negen)?(s?en|ën)?(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)?"
     ]
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (m1:m2:m3:m4:m5:m6_)):_) -> do
+      (Token RegexMatch (GroupMatch (m1:m2:m3:m4:m5:m6:_)):_) -> do
         v1 <- case Text.toLower m1 of
           "twee" -> Just 2
           "drie" -> Just 3

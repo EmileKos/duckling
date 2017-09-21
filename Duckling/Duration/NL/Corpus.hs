@@ -37,9 +37,7 @@ negativeCorpus = (testContext, examples)
 allExamples :: [Example]
 allExamples = concat
   [ examples (DurationData 1 Second)
-             [ "een sec"
-             , "één seconde"
-             , "1 seconde"
+             [ "1 seconde"
              , "1s"
              , "1 s"
              , "1\""

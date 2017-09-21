@@ -341,7 +341,7 @@ ruleHundreds = Rule
   , pattern =
     [ oneOf [100, 200 .. 900]
     , regex "(en)?"
-    , numberBetween 1 99]
+    , numberBetween 1 99
     ]
   , prod = \tokens -> case tokens of
       (Token Numeral (NumeralData {TNumeral.value = v1}):

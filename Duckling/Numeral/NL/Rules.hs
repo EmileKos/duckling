@@ -172,6 +172,52 @@ ruleInteger3 = Rule
       _ -> Nothing
   }
 
+ruleInteger4 :: Rule
+ruleInteger4 = Rule
+  { name = "integer ([2-9][2-9][2-9][1-9])"--tousands or hundreds, no tousand hundreds because they use a space after tausand. No "tien", "elf" "twaalf" "dertien" "veertien"
+  , pattern =
+    [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)?(honderd|duizend)(en| )?(een|twee|drie|vier|vijf|zes|zeven|acht|negen)?(s?en|ën)?(twintig|dertig|veertig|vijftig|zestig|zeventig|tachtig|negentig)?"
+    ]
+  , prod = \tokens -> case tokens of
+      (Token RegexMatch (GroupMatch (m1:m2:m3:m4:m5:m6_)):_) -> do
+        v1 <- case Text.toLower m1 of
+          "twee" -> Just 2
+          "drie" -> Just 3
+          "vier" -> Just 4
+          "vijf" -> Just 5
+          "zes" -> Just 6
+          "zeven" -> Just 7
+          "acht" -> Just 8
+          "negen" -> Just 9
+          _ -> Nothing
+        v2 <- case Text.toLower m1 of
+          "honderd" -> Just 100
+          "duizend" -> Just 1000    
+        v4 <- case Text.toLower m1 of
+          "een" -> Just 1
+          "twee" -> Just 2
+          "drie" -> Just 3
+          "vier" -> Just 4
+          "vijf" -> Just 5
+          "zes" -> Just 6
+          "zeven" -> Just 7
+          "acht" -> Just 8
+          "negen" -> Just 9
+          _ -> Nothing
+        v6 <- case Text.toLower m3 of
+          "twintig" -> Just 20
+          "dertig" -> Just 30
+          "veertig" -> Just 40
+          "vijftig" -> Just 50
+          "zestig" -> Just 60
+          "zeventig" -> Just 70
+          "tachtig" -> Just 80
+          "negentig" -> Just 90
+          _ -> Nothing
+        integer $ v1 * v2 + v4 + v6
+      _ -> Nothing
+  }
+
 ruleMultiply :: Rule
 ruleMultiply = Rule
   { name = "compose by multiplication"
@@ -351,7 +397,6 @@ ruleHundredsAnd = Rule
       _ -> Nothing
   }
 
-
 rules :: [Rule]
 rules =
   [ ruleCouple
@@ -363,6 +408,7 @@ rules =
   , ruleInteger
   , ruleInteger2
   , ruleInteger3
+  , ruleInteger4
   , ruleIntegerWithThousandsSeparator
   , ruleIntegerNumeric
   , ruleIntersect

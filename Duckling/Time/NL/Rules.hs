@@ -1645,7 +1645,6 @@ rules =
   , ruleTimezone
   , rulePartOfMonth
   , ruleNow
-  , ruleInstants
   ]
   ++ ruleInstants
   ++ ruleDaysOfWeek

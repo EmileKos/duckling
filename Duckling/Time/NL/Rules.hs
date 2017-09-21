@@ -378,8 +378,8 @@ ruleNamedDOMOrdinal :: Rule
 ruleNamedDOMOrdinal = Rule
   { name = "<named-month>|<named-day> <day-of-month> (ordinal)"
   , pattern =
-    [ Predicate $ liftM2 (||) isAMonth isADayOfWeek
-    , Predicate isDOMOrdinal
+    [ Predicate isDOMOrdinal
+    , Predicate $ liftM2 (||) isAMonth isADayOfWeek 
     ]
   , prod = \tokens -> case tokens of
       (Token Time td:token:_) -> Token Time <$> intersectDOM td token
@@ -390,8 +390,8 @@ ruleMonthDOMNumeral :: Rule
 ruleMonthDOMNumeral = Rule
   { name = "<named-month> <day-of-month> (non ordinal)"
   , pattern =
-    [ Predicate isAMonth
-    , Predicate isDOMInteger
+    [ Predicate isDOMInteger
+    , Predicate isAMonth
     ]
   , prod = \tokens -> case tokens of
       (Token Time td:token:_) -> Token Time <$> intersectDOM td token
@@ -461,18 +461,6 @@ ruleAtTOD = Rule
     ]
   , prod = \tokens -> case tokens of
       (_:Token Time td:_) -> tt $ notLatent td
-      _ -> Nothing
-  }
-
-ruleTODOClock :: Rule
-ruleTODOClock = Rule
-  { name = "<time-of-day> o'clock"
-  , pattern =
-    [ Predicate isATimeOfDay
-    , regex "o.?clock"
-    ]
-  , prod = \tokens -> case tokens of
-      (Token Time td:_) -> tt $ notLatent td
       _ -> Nothing
   }
 
@@ -682,7 +670,7 @@ ruleMMYYYY :: Rule
 ruleMMYYYY = Rule
   { name = "mm/yyyy"
   , pattern =
-    [ regex "(0?[1-9]|1[0-2])[/-](\\d{4})"
+    [ regex "(0?[1-9]|1[0-2])[/-\\.](\\d{4})"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (mm:yy:_)):_) -> do
@@ -694,11 +682,11 @@ ruleMMYYYY = Rule
 
 ruleMMDDYYYY :: Rule
 ruleMMDDYYYY = Rule
-  { name = "mm/dd/yyyy"
+  { name = "dd/mm/yyyy"
   , pattern =
-    [regex "(0?[1-9]|1[0-2])[/-](3[01]|[12]\\d|0?[1-9])[-/](\\d{2,4})"]
+    [regex "(3[01]|[12]\\d|0?[1-9])[-/](0?[1-9]|1[0-2])[/-](\\d{2,4})"
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (mm:dd:yy:_)):_) -> do
+      (Token RegexMatch (GroupMatch (dd:mm:yy:_)):_) -> do
         y <- parseInt yy
         m <- parseInt mm
         d <- parseInt dd
@@ -721,10 +709,10 @@ ruleYYYYMMDD = Rule
 
 ruleMMDD :: Rule
 ruleMMDD = Rule
-  { name = "mm/dd"
-  , pattern = [regex "(0?[1-9]|1[0-2])\\s?[/-]\\s?(3[01]|[12]\\d|0?[1-9])"]
+  { name = "dd/mm"
+  , pattern = [regex "(3[01]|[12]\\d|0?[1-9])\\s?[/-]\\s?(0?[1-9]|1[0-2])"
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (mm:dd:_)):_) -> do
+      (Token RegexMatch (GroupMatch (dd:mm:_)):_) -> do
         m <- parseInt mm
         d <- parseInt dd
         tt $ monthDay m d
@@ -1181,7 +1169,7 @@ daysOfWeek =
   , ( "Dinsdag"  , "dinsdag|di\\.?"        )
   , ( "Woensdag" , "woensdag|woe?\\.?"     )
   , ( "Donderdag", "donderdag|do\\.?"      )
-  , ( "Vrijdag"  , "vrijdag|vrij?\\.?"     )
+  , ( "Vrijdag"  , "vrijdag|vr(ij)?\\.?"     )
   , ( "Zaterdag" , "zaterdag|zat?\\.?"     )
   , ( "Zondag"   , "zondag|zo\\.?"         )
   ]
@@ -1250,7 +1238,7 @@ beHolidays =
   , ( "Nieuwjaar"        , "nieuw(jaar)?s?(dag)?", 1 , 1  )
   , ( "Valentijnsdag"    , "valentijns?(dag)?"   , 2 , 14 )
   , ( "Halloween"        , "hall?oween"          , 10, 31 )
-  , ( "Dag van de Arbeid", "dag van de arbeid"   , 5, 1 )
+  , ( "Dag van de Arbeid", "dag van de arbeid"   , 5 , 1   )
   ]
 
 ruleBEHolidays :: [Rule]
@@ -1588,7 +1576,6 @@ rules =
   , ruleDOMOrdinalMonthYear
   , ruleTODLatent
   , ruleAtTOD
-  , ruleTODOClock
   , ruleHHMM
   , ruleHHMMLatent
   , ruleHHMMSS

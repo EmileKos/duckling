@@ -150,11 +150,9 @@ allExamples = concat
   , examples (NumeralValue 21011)
              [ "eenentwintigduizend elf"
              , "eenentwintigduizend en elf"
-             , "eenentwintigduizendelf"
              ]
   , examples (NumeralValue 721012)
              [ "zevenhonderdeenentwintigduizend twaalf"
-             , "zevenhonderdeenentwintigduizendtwaalf"
              , "zevenhonderdeenentwintigduizend en twaalf"
              ]
   , examples (NumeralValue 31256721)

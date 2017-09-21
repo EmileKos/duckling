@@ -172,7 +172,7 @@ ruleInteger3 = Rule
       _ -> Nothing
   }
 
-ruleInteger4 :: Rule
+ruleInteger4 :: Rule --werkt niet
 ruleInteger4 = Rule
   { name = "integer ([2-9][2-9][2-9][1-9])"--tousands or hundreds, no tousand hundreds because they use a space after tausand. No "tien", "elf" "twaalf" "dertien" "veertien"
   , pattern =
@@ -241,7 +241,7 @@ ruleIntersect = Rule
   , prod = \tokens -> case tokens of
       (Token Numeral (NumeralData {TNumeral.value = val1, TNumeral.grain = Just g}):
        Token Numeral (NumeralData {TNumeral.value = val2}):
-       _) | (10 ** fromIntegral g) > val2 -> double $ val1 * val2
+       _) | (10 ** fromIntegral g) > val2 -> double $ val1 + val2
       _ -> Nothing
   }
 
@@ -382,7 +382,7 @@ ruleHundreds = Rule
       _ -> Nothing
   }
 
-ruleHundredsAnd ::Rule
+ruleHundredsAnd ::Rule --werkt niet
 ruleHundredsAnd = Rule
   { name = "hundreds en"
   , pattern =
@@ -395,6 +395,46 @@ ruleHundredsAnd = Rule
        _:
        Token Numeral (NumeralData {TNumeral.value = v2}):
        _) -> double $ v1 + v2
+      _ -> Nothing
+  }
+
+ruleTousands :: Rule
+ruleTousands = Rule
+  { name = "tousands"
+  , pattern =
+    [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)duizend"
+    ]
+  , prod = \tokens -> case tokens of
+      (Token RegexMatch (GroupMatch (m1:m2_)):_) -> case Text.toLower match of
+        "twee" -> integer 2000
+        "drie" -> integer 3000
+        "vier" -> integer 4000
+        "vijf" -> integer 5000
+        "zes" -> integer 6000
+        "zeven" -> integer 7000
+        "acht" -> integer 8000
+        "negen" -> integer 9000
+        _ -> Nothing
+      _ -> Nothing
+  }
+
+ruleHTousands :: Rule
+ruleHTousands = Rule
+  { name = "hundredtousands"
+  , pattern =
+    [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)?honderdduizend"
+    ]
+  , prod = \tokens -> case tokens of
+      (Token RegexMatch (GroupMatch (m1:m2_)):_) -> case Text.toLower match of
+        "twee" -> integer 200000
+        "drie" -> integer 300000
+        "vier" -> integer 400000
+        "vijf" -> integer 500000
+        "zes" -> integer 600000
+        "zeven" -> integer 700000
+        "acht" -> integer 800000
+        "negen" -> integer 900000
+        _ -> Nothing
       _ -> Nothing
   }
 
@@ -420,4 +460,6 @@ rules =
   , ruleNumeralsSuffixesKMG
   , rulePowersOfTen
   , ruleTen
+  , ruleTousands
+  , ruleHTousands
   ]

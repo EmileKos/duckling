@@ -880,5 +880,4 @@ allExamples = concat
   , examples (datetimeInterval ((2013, 8, 19, 0, 0, 0), (2013, 8, 22, 0, 0, 0)) Day)
              [ "19 tot 21 augustus"
              ]
-
   ]

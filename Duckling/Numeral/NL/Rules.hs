@@ -472,7 +472,6 @@ rules =
   , ruleInteger2
   , ruleInteger3
   , ruleInteger4
-  , ruleIntegerTh
   , ruleIntegerWithThousandsSeparator
   , ruleIntegerNumeric
   , ruleIntersect

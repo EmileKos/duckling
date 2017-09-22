@@ -464,7 +464,7 @@ ruleIntegerTh = Rule
     [ regex "(twee|drie|vier|vijftien|vijf|zestien|zes|zeventien|zeven|achttien|acht|negentien|negen|tien|elf|twaalf|dertien|veertien)(honderd|duizend)"
     ]
   , prod = \tokens -> case tokens of
-      (Token RegexMatch (GroupMatch (m1:m2:_)):_) ->
+      (Token RegexMatch (GroupMatch (m1:m2:_)):_) -> do
         v1 <- case HashMap.lookup (Text.toLower m1) zeroNineteenMap >>= integer
         _ -> Nothing
         v2 <- case Text.toLower m2 of

@@ -466,12 +466,12 @@ ruleIntegerTh = Rule
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (m1:m2:_)):_) -> do
         v1 <- case HashMap.lookup (Text.toLower m1) zeroNineteenMap >>= integer
-        _ -> Nothing
+          _ -> Nothing
         v2 <- case Text.toLower m2 of
           "honderd" -> double 1e2
           "duizend" -> double 1e3
           _ -> Nothing
-          -> double $ v1 * v2
+        -> double $ v1 * v2
       _ -> Nothing
   }
 

@@ -90,7 +90,7 @@ regenClassifiers lang = do
       KO -> KOTime.corpus
       MY -> (testContext, [])
       NB -> NBTime.corpus
-      NL -> NLTime.corpus
+      NL -> (testContext, [])
       PL -> PLTime.corpus
       PT -> PTTime.corpus
       RO -> ROTime.corpus

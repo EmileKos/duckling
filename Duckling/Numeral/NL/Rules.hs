@@ -444,7 +444,6 @@ ruleHThousands = Rule
         _ -> Nothing
       _ -> Nothing
   }
-"k" -> double $ v * 1e3
 
 ruleFractions :: Rule
 ruleFractions = Rule

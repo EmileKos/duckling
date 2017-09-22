@@ -7,8 +7,7 @@
 
 
 module Duckling.Dimensions.NL
-  ( allDimensions
-  ) where
+  ( allDimensions ) where
 
 import Duckling.Dimensions.Types
 

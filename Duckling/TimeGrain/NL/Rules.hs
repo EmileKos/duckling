@@ -9,8 +9,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Duckling.TimeGrain.NL.Rules
-  ( rules 
-  ) where
+  ( rules ) where
 
 import Data.Text (Text)
 import Prelude

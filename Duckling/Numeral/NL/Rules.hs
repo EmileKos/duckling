@@ -470,7 +470,7 @@ ruleIntegerTh = Rule
         v2 <- case Text.toLower m2 of
           "honderd" -> double 1e2
           "duizend" -> double 1e3
-        _ -> Nothing
+          _ -> Nothing
           -> double $ v1 * v2
       _ -> Nothing
   }

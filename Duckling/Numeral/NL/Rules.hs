@@ -429,7 +429,7 @@ ruleHThousands :: Rule
 ruleHThousands = Rule
   { name = "hundredthousands"
   , pattern =
-    [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)?honderdduizend"
+    [ regex "(twee|drie|vier|vijf|zes|zeven|acht|negen)honderdduizend"
     ]
   , prod = \tokens -> case tokens of
       (Token RegexMatch (GroupMatch (match:_)):_) -> case Text.toLower match of
@@ -444,6 +444,7 @@ ruleHThousands = Rule
         _ -> Nothing
       _ -> Nothing
   }
+"k" -> double $ v * 1e3
 
 ruleFractions :: Rule
 ruleFractions = Rule
@@ -454,6 +455,24 @@ ruleFractions = Rule
         n <- parseDecimal False numerator
         d <- parseDecimal False denominator
         divide n d
+      _ -> Nothing
+  }
+
+ruleIntegerTh :: Rule
+ruleIntegerTh = Rule
+  { name = "integer (0..19)"
+  , pattern =
+    [ regex "(twee|drie|vier|vijftien|vijf|zestien|zes|zeventien|zeven|achttien|acht|negentien|negen|tien|elf|twaalf|dertien|veertien)(honderd|duizend)"
+    ]
+  , prod = \tokens -> case tokens of
+      (Token RegexMatch (GroupMatch (m1:m2:_)):_) ->
+        v1 <- HashMap.lookup (Text.toLower m1) zeroNineteenMap >>= integer
+        _ -> Nothing
+        v2 <- case Text.toLower m2 of
+          "honderd" -> double 1e2
+          "duizend" -> double 1e3
+        _ -> Nothing
+          -> double $ v1 * v2
       _ -> Nothing
   }
 
@@ -470,6 +489,7 @@ rules =
   , ruleInteger2
   , ruleInteger3
   , ruleInteger4
+  , ruleIntegerTh
   , ruleIntegerWithThousandsSeparator
   , ruleIntegerNumeric
   , ruleIntersect

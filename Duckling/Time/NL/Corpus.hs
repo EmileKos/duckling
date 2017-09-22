@@ -11,9 +11,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Duckling.Time.NL.Corpus
-  ( corpus
-  , negativeCorpus
-  ) where
+  ( corpus, negativeCorpus ) where
 
 import Data.String
 import Prelude
